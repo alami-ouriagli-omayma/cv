@@ -3,128 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Omayma Alami Ouriagli — CV</title>
+    <meta name="description" content="CV d'Omayma Alami Ouriagli, développeuse Full-Stack MERN & IA.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            box-sizing: border-box;
+        :root {
+            --bg: #0b0b17;
+            --violet: #8b5cf6;
+            --pink: #ec4899;
+            --teal: #2dd4bf;
+            --text: #f3f4f6;
+            --muted: #9ca3af;
+            --glass: rgba(255, 255, 255, 0.06);
+            --border: rgba(255, 255, 255, 0.12);
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f7;
-            color: #222;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        header {
-            background: #111827;
-            color: white;
-            padding: 25px;
-            text-align: center;
+        /* Halos lumineux d'arrière-plan */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(110px);
+            opacity: 0.45;
+            z-index: 0;
+            animation: float 14s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .blob.b1 { width: 480px; height: 480px; background: var(--violet); top: -140px; left: -120px; }
+        .blob.b2 { width: 420px; height: 420px; background: var(--pink); top: 35%; right: -140px; animation-delay: -5s; opacity: 0.3; }
+        .blob.b3 { width: 380px; height: 380px; background: var(--teal); bottom: -140px; left: 20%; animation-delay: -9s; opacity: 0.3; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, 30px) scale(1.08); }
         }
 
-        header h1 {
-            margin: 0 0 8px;
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 70px 24px 40px;
         }
 
-        header p {
-            margin: 0;
-            color: #d1d5db;
+        /* En-tête */
+        header { text-align: center; margin-bottom: 40px; }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            backdrop-filter: blur(10px);
+            margin-bottom: 26px;
+        }
+        .badge .dot {
+            width: 8px; height: 8px;
+            background: var(--teal);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--teal);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 50% { opacity: 0.4; } }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            line-height: 1.1;
+            background: linear-gradient(120deg, #fff 20%, #c4b5fd 55%, #f9a8d4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 18px;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 20px;
+        .role {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 22px;
         }
 
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .tag {
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--glass);
+            color: #e5e7eb;
+        }
+        .tag:nth-child(1) { border-color: rgba(139, 92, 246, 0.5); }
+        .tag:nth-child(2) { border-color: rgba(45, 212, 191, 0.5); }
+        .tag:nth-child(3) { border-color: rgba(236, 72, 153, 0.5); }
+
+        /* Boutons */
         .actions {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 16px;
+            margin: 38px 0 50px;
         }
 
         .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 600;
             text-decoration: none;
-            padding: 12px 20px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+        .btn svg { width: 19px; height: 19px; flex-shrink: 0; }
+
+        .btn-primary {
+            color: #fff;
+            background: linear-gradient(135deg, #7c3aed, #be185d);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(190, 24, 93, 0.4);
+        }
+
+        .btn-secondary {
+            color: var(--text);
+            background: var(--glass);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            background: rgba(45, 212, 191, 0.12);
+            border-color: var(--teal);
+            box-shadow: 0 12px 30px rgba(45, 212, 191, 0.2);
+        }
+
+        /* Maquette : fenêtre de navigateur */
+        .mockup {
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255,255,255,0.03);
+            overflow: hidden;
+            backdrop-filter: blur(14px);
+        }
+
+        .mockup-bar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid var(--border);
+        }
+        .lights { display: flex; gap: 8px; }
+        .lights span { width: 12px; height: 12px; border-radius: 50%; }
+        .lights span:nth-child(1) { background: #ff5f57; }
+        .lights span:nth-child(2) { background: #febc2e; }
+        .lights span:nth-child(3) { background: #28c840; }
+
+        .address {
+            flex: 1;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 6px 16px;
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--muted);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
-            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
+        .mockup-bar::after { content: ""; width: 52px; }
 
-        .view {
-            background: #8b5cf6;
-            color: white;
-        }
-
-        .download {
-            background: #00c9a7;
-            color: white;
-        }
-
-        .cv-container {
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-        }
+        .mockup-body { padding: 18px; background: #1a1a2e; }
 
         iframe {
+            display: block;
             width: 100%;
             height: 1100px;
             border: none;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .fallback {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+            font-size: 0.95rem;
         }
 
         footer {
             text-align: center;
-            padding: 25px;
-            color: #666;
+            padding: 40px 20px 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        footer span { color: var(--violet); }
+
+        @media (max-width: 640px) {
+            .wrapper { padding-top: 50px; }
+            .btn { width: 100%; justify-content: center; }
+            .actions { margin-bottom: 36px; }
+            iframe { height: 620px; }
+            .mockup-body { padding: 10px; }
         }
     </style>
 </head>
 
 <body>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
 
-    <header>
-        <h1>Omayma Alami Ouriagli</h1>
-        <p>Full-Stack Web Developer | MERN Stack | AI</p>
-    </header>
+    <div class="wrapper">
 
-    <div class="container">
+        <header>
+            <div class="badge"><span class="dot"></span> Disponible pour de nouvelles opportunités - PFE</div>
+            <h1>Omayma Alami Ouriagli</h1>
+            <p class="role">Développeuse Web Full-Stack</p>
+            <div class="tags">
+                <span class="tag">MERN Stack</span>
+                <span class="tag">Intelligence Artificielle</span>
+                <span class="tag">Full-Stack</span>
+            </div>
+        </header>
 
         <div class="actions">
-
-            <a
-                href="CV_ALAMI_OURIAGLI_OMAYMA_FR (1).pdf"
-                target="_blank"
-                class="btn view">
-                 View CV
+            <a href="CV_ALAMI_OURIAGLI_OMAYMA.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+                Voir le CV
             </a>
 
-            <a
-                href="CV_ALAMI_OURIAGLI_OMAYMA_FR (1).pdf"
-                download
-                class="btn download">
-                Download CV
+            <a href="CV_ALAMI_OURIAGLI_OMAYMA.pdf" download class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Télécharger le CV
             </a>
-
         </div>
 
-        <div class="cv-container">
-
-            <iframe
-                src="CV_ALAMI_OURIAGLI_OMAYMA_FR (1).pdf">
-            </iframe>
-
+        <div class="mockup">
+            <div class="mockup-bar">
+                <div class="lights"><span></span><span></span><span></span></div>
+                <div class="address">CV_ALAMI_OURIAGLI_OMAYMA.pdf</div>
+            </div>
+            <div class="mockup-body">
+                <iframe src="CV_ALAMI_OURIAGLI_OMAYMA.pdf#view=FitH" title="CV d'Omayma Alami Ouriagli"></iframe>
+            </div>
         </div>
 
     </div>
 
     <footer>
-        © 2026 Omayma Alami Ouriagli
+        © 2026 Omayma Alami Ouriagli · Conçu avec <span>♥</span>
     </footer>
-
 </body>
 </html>
